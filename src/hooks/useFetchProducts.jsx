@@ -11,16 +11,20 @@ export default function useFetchProducts() {
     const data = await response.json();
     // console.log(data);
     setData(data);
-    getCategory();
   };
   const getCategory = () => {
-    const categories = new Set();
-    data.map((el) => categories.add(el.company));
-    setCompanies([...categories]);
+    if (data) {
+      const categories = new Set();
+      data.map((el) => categories.add(el.company));
+      setCompanies(["all", ...categories]);
+    }
   };
   useEffect(() => {
     fetchProducts();
   }, []);
+  useEffect(() => {
+    getCategory();
+  }, [data]);
   console.log(data);
   console.log(companies, "comp in FETCH");
   return { data, companies };

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function ProductPage({ product }) {
   console.log(product);
   return (
-    <>
+    <div style={{ marginLeft: 50 }}>
       <div>
         <Button
           component={Link}
@@ -31,7 +31,12 @@ export default function ProductPage({ product }) {
           component="img"
           src={product.image}
           alt={product.name}
-          sx={{ width: "50%", maxHeight: 1 / 4 }}
+          sx={{
+            width: "50%",
+            height: "350px",
+            objectFit: "cover",
+            borderRadius: "5px",
+          }}
         ></Box>
         <Box align="left" sx={{ marginTop: "10px", marginLeft: "30px" }}>
           <Typography variant="h4" sx={{ textTransform: "capitalize" }}>
@@ -52,12 +57,17 @@ export default function ProductPage({ product }) {
           <Typography variant="subtitle1">{product.description}</Typography>
           <Button
             variant="contained"
-            sx={{ margin: "50px", textTransform: "none", color: "lightpurple" }}
+            color="secondary"
+            sx={{
+              margin: "50px",
+              textTransform: "none",
+              color: "success",
+            }}
           >
             Add to Cart
           </Button>
         </Box>
       </Box>
-    </>
+    </div>
   );
 }

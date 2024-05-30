@@ -13,12 +13,46 @@ function App() {
   // const [singleProduct, setSingleProduct] = useState({});
   const [selectProduct, setSelectProduct] = useState({});
   const { data, companies } = useFetchProducts();
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedCompany, setSelectedCompany] = useState("");
   useEffect(() => {
     if (data) {
       setProducts(data);
       setcompaniesList(companies);
     }
-  }, [data]);
+  }, [data, companies]);
+
+  //selected Company products
+  const selectedProducts = (selected) => {
+    setSelectedCompany(selected);
+    renderSelectedCompanyProducts();
+    console.log(selected, "selected company");
+  };
+  const renderSelectedCompanyProducts = () => {
+    if (selectedCompany === "all") {
+      setProducts(data);
+    } else {
+      const sProducts = data.filter((product) => {
+        return product.company === selectedCompany;
+      });
+      setProducts(sProducts);
+      console.log(sProducts, "selected products");
+    }
+  };
+
+  //search input handler
+  const onSeachChange = (value) => {
+    setSearchValue(value);
+    console.log(value, "onSeachChange");
+    filteredProducts();
+  };
+  const filteredProducts = () => {
+    const fProducts = data.filter((product) => {
+      return product.name.includes(searchValue);
+    });
+    console.log(fProducts, "filtered");
+    setProducts(fProducts);
+  };
   // const getCategory = () => {
   //   const categoryList = new Set(["all"]);
   //   products.map((el) => categoryList.add(el.company));
@@ -38,7 +72,7 @@ function App() {
 
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 2 }}>
         <Grid container spacing={2}>
           <Grid item xs={2}>
             <Routes>
@@ -47,6 +81,8 @@ function App() {
                 element={
                   <Sidebar
                     companiesList={companiesList}
+                    handleSearch={onSeachChange}
+                    selectedCompany={selectedProducts}
                     // getSelectedProduct={getSelectedProduct}
                   />
                 }
