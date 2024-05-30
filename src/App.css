@@ -1,0 +1,12 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+hr {
+  width: 150px;
+  border: 2px solid purple;
+  margin-bottom: 50px;
+}
