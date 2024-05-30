@@ -18,7 +18,6 @@ export default function Sidebar({
   selectedCompany,
 }) {
   const drawerWidth = 200;
-  console.log(companiesList, "companies SIDE");
   const [input, setInput] = useState("");
   const [selCompany, setSelCompany] = useState("");
   const handleChange = (e) => {
@@ -28,10 +27,8 @@ export default function Sidebar({
   };
   const handleClick = (e) => {
     const { textContent } = e.target;
-    console.log(e.target.textContent);
     setSelCompany(textContent);
     selectedCompany(textContent);
-    console.log(textContent, "selected company");
   };
 
   return (

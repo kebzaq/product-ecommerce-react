@@ -4,7 +4,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function ProductPage({ product }) {
-  console.log(product);
   return (
     <div style={{ marginLeft: 50 }}>
       <div>
@@ -51,8 +50,8 @@ export default function ProductPage({ product }) {
           </Typography>
           <Typography variant="subtitle1">${product.price / 100}</Typography>
 
-          {product.colors.map((color) => (
-            <CircleIcon sx={{ color: { color } }} />
+          {product.colors.map((color, index) => (
+            <CircleIcon sx={{ color: { color } }} key={index} />
           ))}
           <Typography variant="subtitle1">{product.description}</Typography>
           <Button

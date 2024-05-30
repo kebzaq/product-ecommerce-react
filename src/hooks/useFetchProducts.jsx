@@ -25,7 +25,6 @@ export default function useFetchProducts() {
   useEffect(() => {
     getCategory();
   }, [data]);
-  console.log(data);
-  console.log(companies, "comp in FETCH");
+
   return { data, companies };
 }

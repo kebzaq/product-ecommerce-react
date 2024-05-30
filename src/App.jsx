@@ -26,7 +26,6 @@ function App() {
   const selectedProducts = (selected) => {
     setSelectedCompany(selected);
     renderSelectedCompanyProducts();
-    console.log(selected, "selected company");
   };
   const renderSelectedCompanyProducts = () => {
     if (selectedCompany === "all") {
@@ -36,24 +35,24 @@ function App() {
         return product.company === selectedCompany;
       });
       setProducts(sProducts);
-      console.log(sProducts, "selected products");
     }
   };
 
   //search input handler
   const onSeachChange = (value) => {
     setSearchValue(value);
-    console.log(value, "onSeachChange");
+
     filteredProducts();
   };
   const filteredProducts = () => {
     const fProducts = data.filter((product) => {
       return product.name.includes(searchValue);
     });
-    console.log(fProducts, "filtered");
+
     setProducts(fProducts);
   };
   // const getCategory = () => {
+
   //   const categoryList = new Set(["all"]);
   //   products.map((el) => categoryList.add(el.company));
   //   setCompanies([...categoryList]);
@@ -64,11 +63,9 @@ function App() {
   const getSelectedProduct = (product) => {
     // const selectedProduct = products.find((el) => el.id === id);
     setSelectProduct(product);
-    console.log("selected:", product);
+
     navigate(`/products/${product.name}`);
   };
-
-  console.log(companiesList, "companies APP");
 
   return (
     <>
